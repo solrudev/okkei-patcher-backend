@@ -20,6 +20,7 @@ import { PatcherModule } from "./modules/patcher/patcher.module";
 			username: process.env.POSTGRES_USERNAME,
 			password: process.env.POSTGRES_PASSWORD,
 			database: process.env.POSTGRES_DATABASE,
+			ssl: { rejectUnauthorized: false },
 			entities: [
 				File,
 				EnglishPatch,
