@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule } from "@nestjs/config";
 import { File } from "./entities/file.entity";
-import { EnglishPatch } from "./entities/english-patch.entity";
+import { EnglishPatchFile } from "./entities/english-patch-file.entity";
 import { PatcherVersion } from "./entities/patcher-version.entity";
 import { PatcherChange } from "./entities/patcher-change.entity";
 import { PatchModule } from "./modules/patch/patch.module";
@@ -23,7 +23,7 @@ import { PatcherModule } from "./modules/patcher/patcher.module";
 			ssl: { rejectUnauthorized: false },
 			entities: [
 				File,
-				EnglishPatch,
+				EnglishPatchFile,
 				PatcherVersion,
 				PatcherChange
 			],

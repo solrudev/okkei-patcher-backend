@@ -1,7 +1,7 @@
 import { Column, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { File } from "./file.entity";
 
-export class Patch {
+export class PatchFile {
 
 	@PrimaryGeneratedColumn()
 	id: number;

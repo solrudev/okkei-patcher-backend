@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { EnglishPatch } from "../../entities/english-patch.entity";
+import { EnglishPatchFile } from "../../entities/english-patch-file.entity";
 import { Repository } from "typeorm";
 import { EnglishPatchDto } from "./dto/english-patch.dto";
 
@@ -8,8 +8,8 @@ import { EnglishPatchDto } from "./dto/english-patch.dto";
 export class EnglishPatchService {
 
 	constructor(
-		@InjectRepository(EnglishPatch)
-		private readonly englishPatchRepository: Repository<EnglishPatch>
+		@InjectRepository(EnglishPatchFile)
+		private readonly englishPatchRepository: Repository<EnglishPatchFile>
 	) {
 	}
 
