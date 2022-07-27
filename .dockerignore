@@ -1,0 +1,10 @@
+.git
+.gitignore
+.idea
+dist
+node_modules
+.env
+.*.env
+Dockerfile
+Procfile
+README.md
