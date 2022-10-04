@@ -14,6 +14,6 @@ export class PatchController {
 	@ApiResponse({ status: 200, type: EnglishPatchDto })
 	@Get("en")
 	getEnglishPatch(): Promise<EnglishPatchDto | {}> {
-		return this.englishPatchService.getPatchFiles();
+		return this.englishPatchService.getPatch();
 	}
 }

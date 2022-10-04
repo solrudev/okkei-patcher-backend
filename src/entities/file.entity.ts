@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export class File {
 
 	@PrimaryGeneratedColumn()
-	id: number;
+	readonly id: number;
 
 	@Column()
 	version: number;

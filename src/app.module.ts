@@ -7,6 +7,7 @@ import { PatcherVersion } from "./entities/patcher-version.entity";
 import { PatcherChange } from "./entities/patcher-change.entity";
 import { PatchModule } from "./modules/patch/patch.module";
 import { PatcherModule } from "./modules/patcher/patcher.module";
+import { PatchVersion } from "./entities/patch-version.entity";
 
 @Module({
 	imports: [
@@ -28,6 +29,7 @@ import { PatcherModule } from "./modules/patcher/patcher.module";
 					entities: [
 						File,
 						EnglishPatchFile,
+						PatchVersion,
 						PatcherVersion,
 						PatcherChange
 					],

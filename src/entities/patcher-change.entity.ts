@@ -6,7 +6,7 @@ import { Language } from "../interfaces/language.interface";
 export class PatcherChange {
 
 	@PrimaryGeneratedColumn()
-	id: number;
+	readonly id: number;
 
 	@Column({ name: "description_en" })
 	descriptionEn: string;

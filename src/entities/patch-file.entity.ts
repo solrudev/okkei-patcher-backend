@@ -4,7 +4,7 @@ import { File } from "./file.entity";
 export class PatchFile {
 
 	@PrimaryGeneratedColumn()
-	id: number;
+	readonly id: number;
 
 	@Column()
 	name: string;

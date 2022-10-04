@@ -6,7 +6,7 @@ import { PatcherChange } from "./patcher-change.entity";
 export class PatcherVersion {
 
 	@PrimaryGeneratedColumn()
-	id: number;
+	readonly id: number;
 
 	@Column({ name: "version_name" })
 	versionName: string;
