@@ -39,6 +39,11 @@ export class PatcherService {
 				file: {
 					version: MoreThan(version)
 				}
+			},
+			order: {
+				changes: {
+					id: "ASC"
+				}
 			}
 		});
 		return versions.map(version => {
