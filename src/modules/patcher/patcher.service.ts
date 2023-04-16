@@ -41,6 +41,7 @@ export class PatcherService {
 				}
 			},
 			order: {
+				id: "DESC",
 				changes: {
 					id: "ASC"
 				}
