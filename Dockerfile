@@ -2,7 +2,7 @@
 # BUILD FOR LOCAL DEVELOPMENT
 ###################
 
-FROM node:20.8.1-alpine3.18 As development
+FROM node:20.12.1-alpine3.19 As development
 
 WORKDIR /usr/src/app
 
@@ -18,7 +18,7 @@ USER node
 # BUILD FOR PRODUCTION
 ###################
 
-FROM node:20.8.1-alpine3.18 As build
+FROM node:20.12.1-alpine3.19 As build
 
 WORKDIR /usr/src/app
 
@@ -40,7 +40,7 @@ USER node
 # PRODUCTION
 ###################
 
-FROM node:20.8.1-alpine3.18 As production
+FROM node:20.12.1-alpine3.19 As production
 
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
