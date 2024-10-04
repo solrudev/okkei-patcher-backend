@@ -24,8 +24,8 @@ export class PatcherController {
 	@ApiResponse({ status: 200, type: [VersionDto] })
 	@Get("changelog")
 	getChangelog(
-		@Query("version") version: number = 1,
-		@Req() request: Request
+		@Req() request: Request,
+		@Query("version") version: number = 1
 	): Promise<VersionDto[]> {
 		const language = request
 			.acceptsLanguages()
