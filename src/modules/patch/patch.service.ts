@@ -11,13 +11,14 @@ export class PatchService {
 
 	constructor(
 		private readonly patchVersionRepository: Repository<PatchVersion>,
-		private readonly englishPatchRepository: Repository<PatchFile>
+		private readonly englishPatchRepository: Repository<PatchFile>,
+		private readonly language: Language
 	) {
 	}
 
 	async getPatch(supportedFeatures: SupportedFeaturesDto): Promise<PatchResponseDto> {
 		const patchVersion = await this.patchVersionRepository.findOneBy({
-			language: Language.ENGLISH
+			language: this.language
 		});
 		const patchFiles = await this.englishPatchRepository.find({
 			relations: { file: true }

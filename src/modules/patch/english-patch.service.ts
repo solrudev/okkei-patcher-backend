@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { EnglishPatchFile, PatchVersion } from "@patch/entities";
+import { Language } from "@shared/interfaces";
 import { PatchService } from "@patch/patch.service";
 
 @Injectable()
@@ -11,6 +12,6 @@ export class EnglishPatchService extends PatchService {
 		@InjectRepository(PatchVersion) patchVersionRepository: Repository<PatchVersion>,
 		@InjectRepository(EnglishPatchFile) englishPatchRepository: Repository<EnglishPatchFile>
 	) {
-		super(patchVersionRepository, englishPatchRepository);
+		super(patchVersionRepository, englishPatchRepository, Language.ENGLISH);
 	}
 }
