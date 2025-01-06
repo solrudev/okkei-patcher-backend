@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { PatchFileDto } from "@patch/dto";
+import { PatchFileDto } from "./patch-file.dto";
 
 export class PatchResponseDto {
 
@@ -10,11 +10,13 @@ export class PatchResponseDto {
 	readonly displayVersion: string;
 
 	@ApiProperty({
+		type: PatchFileDto,
 		isArray: true
 	})
 	readonly apk: PatchFileDto[];
 
 	@ApiProperty({
+		type: PatchFileDto,
 		isArray: true
 	})
 	readonly obb: PatchFileDto[];

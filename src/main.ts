@@ -17,7 +17,7 @@ async function bootstrap() {
 		.setVersion("1.0.0")
 		.build();
 	const document = SwaggerModule.createDocument(app, config, {
-		extraModels: [FileDto, LegacyEnglishPatchDto, VersionDto, PatchFileDto]
+		extraModels: [PatchFileDto]
 	});
 	SwaggerModule.setup("api/docs", app, document);
 	await app.listen(
