@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { PatcherVersion } from "./patcher-version.entity";
-import { Language } from "../interfaces/language.interface";
+import { PatcherVersion } from "@patcher/entities";
+import { Language } from "@shared/interfaces";
 
 @Entity("patcher_changes")
 export class PatcherChange {

@@ -1,19 +1,22 @@
-import { Controller, Get } from "@nestjs/common";
-import { EnglishPatchService } from "./english-patch.service";
+import { Body, Controller, Post } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { EnglishPatchDto } from "./dto/english-patch.dto";
+import { PatchRequestDto, PatchResponseDto } from "@patch/dto";
+import { EnglishPatchService } from "@patch/english-patch.service";
 
 @ApiTags("Patch files")
-@Controller("patch")
+@Controller({
+	path: "patch",
+	version: "1"
+})
 export class PatchController {
 
 	constructor(private readonly englishPatchService: EnglishPatchService) {
 	}
 
 	@ApiOperation({ summary: "Get English patch files" })
-	@ApiResponse({ status: 200, type: EnglishPatchDto })
-	@Get("en")
-	getEnglishPatch(): Promise<EnglishPatchDto | {}> {
-		return this.englishPatchService.getPatch();
+	@ApiResponse({ status: 200, type: PatchResponseDto })
+	@Post("en")
+	getEnglishPatch(@Body() patchRequestDto: PatchRequestDto): Promise<PatchResponseDto> {
+		return this.englishPatchService.getPatch(patchRequestDto.supportedFeatures);
 	}
 }

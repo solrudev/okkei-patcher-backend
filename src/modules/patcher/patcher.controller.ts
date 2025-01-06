@@ -1,13 +1,16 @@
-import { Controller, Get, Query, Req } from "@nestjs/common";
-import { PatcherService } from "./patcher.service";
-import { Request } from "express";
-import { Language, languageFromString } from "../../interfaces/language.interface";
+import { Controller, Get, Query, Req, VERSION_NEUTRAL } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { FileDto } from "../../dto/file.dto";
-import { VersionDto } from "./dto/version.dto";
+import { Request } from "express";
+import { Language, languageFromString } from "@shared/interfaces";
+import { VersionDto } from "@patcher/dto";
+import { FileDto } from "@shared/dto";
+import { PatcherService } from "@patcher/patcher.service";
 
 @ApiTags("Okkei Patcher app")
-@Controller("app")
+@Controller({
+	path: "app",
+	version: [VERSION_NEUTRAL, "1"]
+})
 export class PatcherController {
 
 	constructor(private readonly patcherService: PatcherService) {

@@ -1,17 +1,17 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { FileDto } from "../../../dto/file.dto";
+import { FileDto } from "@shared/dto";
 
-export class EnglishPatchDto {
+export class LegacyEnglishPatchDto {
 
 	@ApiProperty({
 		example: "1.0",
 		description: "Display version of patch"
 	})
-	displayVersion: string;
+	readonly displayVersion: string;
 
 	@ApiProperty()
-	scripts: FileDto;
+	readonly scripts: FileDto;
 
 	@ApiProperty()
-	obb: FileDto;
+	readonly obb: FileDto;
 }

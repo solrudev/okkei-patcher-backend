@@ -1,7 +1,7 @@
 import { Column, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { File } from "./file.entity";
+import { File } from "@shared/entities";
 
-export class PatchFile {
+export class LegacyPatchFile {
 
 	@PrimaryGeneratedColumn()
 	readonly id: number;

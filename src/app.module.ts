@@ -1,13 +1,12 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule } from "@nestjs/config";
-import { File } from "./entities/file.entity";
-import { EnglishPatchFile } from "./entities/english-patch-file.entity";
-import { PatcherVersion } from "./entities/patcher-version.entity";
-import { PatcherChange } from "./entities/patcher-change.entity";
-import { PatchModule } from "./modules/patch/patch.module";
-import { PatcherModule } from "./modules/patcher/patcher.module";
-import { PatchVersion } from "./entities/patch-version.entity";
+import { File } from "@shared/entities";
+import { LegacyEnglishPatchFile } from "src/legacy/modules/patch/entities";
+import { EnglishPatchFile, PatchVersion } from "@patch/entities";
+import { PatcherChange, PatcherVersion } from "@patcher/entities";
+import { PatchModule } from "@patch/patch.module";
+import { PatcherModule } from "@patcher/patcher.module";
 
 @Module({
 	imports: [
@@ -27,11 +26,12 @@ import { PatchVersion } from "./entities/patch-version.entity";
 					url: process.env.DATABASE_URL,
 					...sslOptions,
 					entities: [
+						LegacyEnglishPatchFile,
 						File,
-						EnglishPatchFile,
 						PatchVersion,
 						PatcherVersion,
-						PatcherChange
+						PatcherChange,
+						EnglishPatchFile
 					],
 					synchronize: process.env.NODE_ENV == "development"
 				};

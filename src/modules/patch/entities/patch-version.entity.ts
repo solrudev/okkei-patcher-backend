@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
-import { Language } from "../interfaces/language.interface";
+import { Language } from "@shared/interfaces";
 
 @Entity("patch_versions")
 export class PatchVersion {

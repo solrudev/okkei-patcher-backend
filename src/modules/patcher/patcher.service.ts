@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { MoreThan, Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { PatcherVersion } from "../../entities/patcher-version.entity";
-import { Language } from "../../interfaces/language.interface";
-import { FileDto } from "../../dto/file.dto";
-import { VersionDto } from "./dto/version.dto";
+import { PatcherVersion } from "@patcher/entities";
+import { Language } from "@shared/interfaces";
+import { VersionDto } from "@patcher/dto";
+import { FileDto } from "@shared/dto";
 
 @Injectable()
 export class PatcherService {

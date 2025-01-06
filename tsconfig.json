@@ -16,6 +16,32 @@
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@patch/*": [
+        "src/modules/patch/*"
+      ],
+      "@patcher/*": [
+        "src/modules/patcher/*"
+      ],
+      "@legacy/*": [
+        "src/legacy/*"
+      ],
+      "@legacy/patch/*": [
+        "src/legacy/modules/patch/*"
+      ],
+      "@legacy/patcher/*": [
+        "src/legacy/modules/patcher/*"
+      ]
+    }
   }
 }

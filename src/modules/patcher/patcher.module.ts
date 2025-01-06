@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { PatcherVersion } from "../../entities/patcher-version.entity";
-import { PatcherService } from "./patcher.service";
-import { PatcherController } from "./patcher.controller";
+import { PatcherVersion } from "@patcher/entities";
+import { PatcherService } from "@patcher/patcher.service";
+import { PatcherController } from "@patcher/patcher.controller";
 
 @Module({
 	providers: [PatcherService],

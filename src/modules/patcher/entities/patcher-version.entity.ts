@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { File } from "./file.entity";
-import { PatcherChange } from "./patcher-change.entity";
+import { PatcherChange } from "@patcher/entities";
+import { File } from "@shared/entities";
 
 @Entity("patcher_versions")
 export class PatcherVersion {
@@ -16,5 +16,5 @@ export class PatcherVersion {
 	file: File;
 
 	@OneToMany(() => PatcherChange, change => change.version)
-	changes: PatcherChange[];
+	readonly changes: PatcherChange[];
 }
