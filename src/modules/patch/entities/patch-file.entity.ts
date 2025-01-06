@@ -1,7 +1,6 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { File } from "@shared/entities";
-import { PatchFileType } from "@patch/interfaces";
-import { PatchTarget } from "@patch/interfaces";
+import { PatchFileType, PatchTarget } from "@patch/interfaces";
 
 export class PatchFile {
 
