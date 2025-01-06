@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule } from "@nestjs/config";
 import { File } from "@shared/entities";
-import { LegacyEnglishPatchFile } from "src/legacy/modules/patch/entities";
+import { LegacyEnglishPatchFile } from "@legacy/patch/entities";
 import { EnglishPatchFile, PatchVersion } from "@patch/entities";
 import { PatcherChange, PatcherVersion } from "@patcher/entities";
 import { PatchModule } from "@patch/patch.module";

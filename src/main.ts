@@ -1,9 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { FileDto } from "@shared/dto";
-import { LegacyEnglishPatchDto } from "@legacy/patch/dto";
-import { VersionDto } from "@patcher/dto";
 import { PatchFileDto } from "@patch/dto";
 
 async function bootstrap() {
