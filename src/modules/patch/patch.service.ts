@@ -1,4 +1,3 @@
-import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { PatchFile, PatchVersion } from "@patch/entities";
 import { PatchFileType, PatchTarget } from "@patch/interfaces";
@@ -6,7 +5,6 @@ import { Language } from "@shared/interfaces";
 import { PatchFileDto, PatchResponseDto, SupportedFeaturesDto } from "@patch/dto";
 import { groupBy } from "@shared/helpers";
 
-@Injectable()
 export class PatchService {
 
 	constructor(
