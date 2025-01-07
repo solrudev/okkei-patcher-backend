@@ -13,6 +13,12 @@ export class PatchFile {
 	@Column()
 	type: PatchFileType;
 
+	@Column({
+		name: "patched_size",
+		default: -1
+	})
+	patchedSize: number;
+
 	@OneToOne(() => File)
 	@JoinColumn({ name: "file_id" })
 	file: File;

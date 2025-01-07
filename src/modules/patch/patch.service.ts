@@ -42,7 +42,7 @@ export class PatchService {
 			.filter(filterPredicate)
 			.map(patchFile => {
 				const { id, ...file } = patchFile.file;
-				return { type: patchFile.type, ...file };
+				return { type: patchFile.type, ...file, patchedSize: patchFile.patchedSize };
 			});
 	}
 }
