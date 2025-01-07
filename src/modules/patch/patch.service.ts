@@ -9,7 +9,7 @@ export class PatchService {
 
 	constructor(
 		private readonly patchVersionRepository: Repository<PatchVersion>,
-		private readonly englishPatchRepository: Repository<PatchFile>,
+		private readonly patchRepository: Repository<PatchFile>,
 		private readonly language: Language
 	) {
 	}
@@ -18,7 +18,7 @@ export class PatchService {
 		const patchVersion = await this.patchVersionRepository.findOneBy({
 			language: this.language
 		});
-		const patchFiles = await this.englishPatchRepository.find({
+		const patchFiles = await this.patchRepository.find({
 			relations: { file: true }
 		});
 		const groupedFiles = groupBy(patchFiles, patchFile => patchFile.target);
