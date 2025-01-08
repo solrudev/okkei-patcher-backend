@@ -7,6 +7,12 @@ export class PatchFile {
 	@PrimaryGeneratedColumn()
 	readonly id: number;
 
+	@Column({
+		name: "target_version",
+		default: 1
+	})
+	targetVersion: number;
+
 	@Column()
 	target: PatchTarget;
 

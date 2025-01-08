@@ -44,6 +44,7 @@ export class PatchService {
 				const { id, ...file } = patchFile.file;
 				return {
 					type: patchFile.type,
+					targetVersion: patchFile.targetVersion,
 					...file,
 					patchedSize: patchFile.patchedSize,
 					compatibleHashes: patchFile.compatibleHashes
