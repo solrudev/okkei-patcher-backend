@@ -19,6 +19,13 @@ export class PatchFile {
 	})
 	patchedSize: number;
 
+	@Column("text", {
+		name: "compatible_hashes",
+		array: true,
+		default: []
+	})
+	compatibleHashes: string[];
+
 	@OneToOne(() => File)
 	@JoinColumn({ name: "file_id" })
 	file: File;
