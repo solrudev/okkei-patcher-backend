@@ -14,7 +14,7 @@ export class PatchService {
 	) {
 	}
 
-	async getPatch(supportedFeatures: SupportedFeaturesDto): Promise<PatchResponseDto> {
+	async getPatch(supportedFeatures: SupportedFeaturesDto, gameVersion?: number): Promise<PatchResponseDto> {
 		const patchVersion = await this.patchVersionRepository.findOneBy({
 			language: this.language
 		});
@@ -24,11 +24,13 @@ export class PatchService {
 		const groupedFiles = groupBy(patchFiles, patchFile => patchFile.target);
 		const apk = this.getPatchFiles(
 			groupedFiles[PatchTarget.APK] ?? [],
-			patchFile => supportedFeatures.scripts || patchFile.type != PatchFileType.SCRIPTS
+			patchFile => supportedFeatures.scripts || patchFile.type != PatchFileType.SCRIPTS,
+			gameVersion
 		);
 		const obb = this.getPatchFiles(
 			groupedFiles[PatchTarget.OBB] ?? [],
-			patchFile => supportedFeatures.binaryPatches || patchFile.type != PatchFileType.OBB_PATCH
+			patchFile => supportedFeatures.binaryPatches || patchFile.type != PatchFileType.OBB_PATCH,
+			gameVersion
 		);
 		return {
 			displayVersion: patchVersion?.displayVersion ?? "",
@@ -37,9 +39,15 @@ export class PatchService {
 		};
 	}
 
-	private getPatchFiles(patchFiles: PatchFile[], filterPredicate: (patchFile: PatchFile) => boolean): PatchFileDto[] {
+	private getPatchFiles(
+		patchFiles: PatchFile[],
+		filterPredicate: (patchFile: PatchFile) => boolean,
+		gameVersion?: number
+	): PatchFileDto[] {
+		const lastGameVersion = Math.max(...patchFiles.map(patchFile => patchFile.gameVersion));
 		return patchFiles
 			.filter(filterPredicate)
+			.filter(patchFile => patchFile.gameVersion == (gameVersion ?? lastGameVersion))
 			.map(patchFile => {
 				const { id, ...file } = patchFile.file;
 				return {

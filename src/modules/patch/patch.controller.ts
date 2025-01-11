@@ -17,6 +17,9 @@ export class PatchController {
 	@ApiResponse({ status: 201, type: PatchResponseDto })
 	@Post("en")
 	getEnglishPatch(@Body() patchRequestDto: PatchRequestDto): Promise<PatchResponseDto> {
-		return this.englishPatchService.getPatch(patchRequestDto.supportedFeatures);
+		return this.englishPatchService.getPatch(
+			patchRequestDto.supportedFeatures,
+			patchRequestDto.gameVersion
+		);
 	}
 }
