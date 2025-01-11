@@ -13,11 +13,12 @@ export class PatchFile {
 	})
 	targetVersion: number;
 
-	@Column({
-		name: "game_version",
-		default: 1
+	@Column("int", {
+		name: "game_versions",
+		array: true,
+		default: [1]
 	})
-	gameVersion: number;
+	gameVersions: number[];
 
 	@Column()
 	target: PatchTarget;

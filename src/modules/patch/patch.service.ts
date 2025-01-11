@@ -44,10 +44,10 @@ export class PatchService {
 		filterPredicate: (patchFile: PatchFile) => boolean,
 		gameVersion?: number
 	): PatchFileDto[] {
-		const lastGameVersion = Math.max(...patchFiles.map(patchFile => patchFile.gameVersion));
+		const lastGameVersion = Math.max(...patchFiles.flatMap(patchFile => patchFile.gameVersions));
 		return patchFiles
 			.filter(filterPredicate)
-			.filter(patchFile => patchFile.gameVersion == (gameVersion ?? lastGameVersion))
+			.filter(patchFile => patchFile.gameVersions.includes(gameVersion ?? lastGameVersion))
 			.map(patchFile => {
 				const { id, ...file } = patchFile.file;
 				return {
