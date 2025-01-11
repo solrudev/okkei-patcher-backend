@@ -41,12 +41,12 @@ export class PatchService {
 
 	private getPatchFiles(
 		patchFiles: PatchFile[],
-		filterPredicate: (patchFile: PatchFile) => boolean,
+		isSupported: (patchFile: PatchFile) => boolean,
 		gameVersion?: number
 	): PatchFileDto[] {
 		const lastGameVersion = Math.max(...patchFiles.flatMap(patchFile => patchFile.gameVersions));
 		return patchFiles
-			.filter(filterPredicate)
+			.filter(isSupported)
 			.filter(patchFile => patchFile.gameVersions.includes(gameVersion ?? lastGameVersion))
 			.map(patchFile => {
 				const { id, ...file } = patchFile.file;
