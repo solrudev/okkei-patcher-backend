@@ -22,14 +22,17 @@ export class PatchService {
 			relations: { file: true }
 		});
 		const groupedFiles = groupBy(patchFiles, patchFile => patchFile.target);
+		const lastGameVersion = Math.max(...patchFiles.flatMap(patchFile => patchFile.gameVersions));
 		const apk = this.getPatchFiles(
 			groupedFiles[PatchTarget.APK] ?? [],
-			patchFile => supportedFeatures.scripts || patchFile.type != PatchFileType.SCRIPTS,
+			patchFile => this.isApkPatchFileSupported(patchFile.type, supportedFeatures),
+			lastGameVersion,
 			gameVersion
 		);
 		const obb = this.getPatchFiles(
 			groupedFiles[PatchTarget.OBB] ?? [],
-			patchFile => supportedFeatures.binaryPatches || patchFile.type != PatchFileType.OBB_PATCH,
+			patchFile => this.isObbPatchFileSupported(patchFile.type, supportedFeatures),
+			lastGameVersion,
 			gameVersion
 		);
 		return {
@@ -42,9 +45,9 @@ export class PatchService {
 	private getPatchFiles(
 		patchFiles: PatchFile[],
 		isSupported: (patchFile: PatchFile) => boolean,
+		lastGameVersion: number,
 		gameVersion?: number
 	): PatchFileDto[] {
-		const lastGameVersion = Math.max(...patchFiles.flatMap(patchFile => patchFile.gameVersions));
 		return patchFiles
 			.filter(isSupported)
 			.filter(patchFile => patchFile.gameVersions.includes(gameVersion ?? lastGameVersion))
@@ -58,5 +61,13 @@ export class PatchService {
 					compatibleHashes: patchFile.compatibleHashes
 				};
 			});
+	}
+
+	private isApkPatchFileSupported(patchFileType: PatchFileType, supportedFeatures: SupportedFeaturesDto): boolean {
+		return supportedFeatures.scripts && patchFileType == PatchFileType.SCRIPTS;
+	}
+
+	private isObbPatchFileSupported(patchFileType: PatchFileType, supportedFeatures: SupportedFeaturesDto): boolean {
+		return supportedFeatures.binaryPatches && patchFileType == PatchFileType.OBB_PATCH;
 	}
 }
