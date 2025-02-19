@@ -22,17 +22,15 @@ export class PatchService {
 			relations: { file: true }
 		});
 		const groupedFiles = groupBy(patchFiles, patchFile => patchFile.target);
-		const lastGameVersion = Math.max(...patchFiles.flatMap(patchFile => patchFile.gameVersions));
+		gameVersion = gameVersion ?? Math.max(...patchFiles.flatMap(patchFile => patchFile.gameVersions));
 		const apk = this.getPatchFiles(
 			groupedFiles[PatchTarget.APK] ?? [],
 			patchFile => this.isApkPatchFileSupported(patchFile.type, supportedFeatures),
-			lastGameVersion,
 			gameVersion
 		);
 		const obb = this.getPatchFiles(
 			groupedFiles[PatchTarget.OBB] ?? [],
 			patchFile => this.isObbPatchFileSupported(patchFile.type, supportedFeatures),
-			lastGameVersion,
 			gameVersion
 		);
 		return {
@@ -45,12 +43,11 @@ export class PatchService {
 	private getPatchFiles(
 		patchFiles: PatchFile[],
 		isSupported: (patchFile: PatchFile) => boolean,
-		lastGameVersion: number,
-		gameVersion?: number
+		gameVersion: number
 	): PatchFileDto[] {
 		return patchFiles
 			.filter(isSupported)
-			.filter(patchFile => patchFile.gameVersions.includes(gameVersion ?? lastGameVersion))
+			.filter(patchFile => patchFile.gameVersions.includes(gameVersion))
 			.map(patchFile => {
 				const { id, ...file } = patchFile.file;
 				return {
