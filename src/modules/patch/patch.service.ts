@@ -46,8 +46,7 @@ export class PatchService {
 		gameVersion: number
 	): PatchFileDto[] {
 		return patchFiles
-			.filter(isSupported)
-			.filter(patchFile => patchFile.gameVersions.includes(gameVersion))
+			.filter(patchFile => isSupported(patchFile) && patchFile.gameVersions.includes(gameVersion))
 			.map(patchFile => {
 				const { id, ...file } = patchFile.file;
 				return {
